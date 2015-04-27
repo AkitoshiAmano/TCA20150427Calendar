@@ -38,7 +38,6 @@ int calendarFunctions::getYear() {
             cout << "数字を入力してください！" << endl;
         } else {
             yearIsNumber = true;
-            break;
         }
     }
     return year;
