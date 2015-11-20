@@ -14,9 +14,11 @@
 
 class calendarFunctions {
 public:
+    bool checkNum(char dataValue, int dataType);
     int dayPerMonthC(int year, int month);
     int dayWeeksC(int year, int month);
     void outputCalendar(int year, int month, int dayPerMonth, int dayWeeks);
+    bool inputDataIsNumber(int inputData);
     int getYear();
     int getMonth();
 };

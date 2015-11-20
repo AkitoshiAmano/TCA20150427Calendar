@@ -7,9 +7,28 @@
 //
 
 #include <iostream>
+#include <string>
+#include "ctype.h"
 #include "functions.h"
+#include <stdlib.h>
 
 using namespace std;
+
+bool calendarFunctions::checkNum(char dataValue, int dataType) {
+    if (isdigit(dataValue)) {
+        if (dataType == 0) {
+            return true;
+        } else if (dataValue < 1 || dataValue > 12) {
+            cout << "入力した月が存在しません、入力直してください！" << endl;
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        cout << "数字を入力してください！" << endl;
+        return false;
+    }
+}
 
 int calendarFunctions::dayPerMonthC(int year, int month) {
     int dayPerMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -30,37 +49,37 @@ int calendarFunctions::dayWeeksC (int year, int month) {
 
 int calendarFunctions::getYear() {
     int year = 0;
-    cout << "年を入力してください：" << endl;
-    cin >> year;
-    for (bool yearIsNumber; yearIsNumber == false;) {
-        if (cin.fail()) {
-            yearIsNumber = false;
-            cout << "数字を入力してください！" << endl;
-            scanf("%d", &year);
+    char y;
+    int a = 1;
+    do {
+        cout << "年を入力してください：" << endl;
+        cin >> y;
+        if (checkNum(y, 0)) {
+            year = atoi(&y);
+            printf("%c, %d\n", y, year);
+            a = 2;
         } else {
-            yearIsNumber = true;
+            a = 1;
         }
-    }
+    } while (a == 1);
     return year;
 }
 
 int calendarFunctions::getMonth() {
     int month = 0;
-    cout << "月を入力してください：" << endl;
-    cin >> month;
-    for (bool monthIsCorrect = false; monthIsCorrect == false; ) {
-        if (cin.fail()) {
-            monthIsCorrect = false;
-            cout << "数字を入力してください！" << endl;
-            cin >> month;
-        } else if (month < 1 || month > 12) {
-            monthIsCorrect = false;
-            cout << "入力した月は存在しません。\n入力直してください。" << endl;
-            cin >> month;
+    char m;
+    int a = 1;
+    do {
+        cout << "月を入力してください：" << endl;
+        cin >> m;
+        if (checkNum(m, 1)) {
+            month = (int)m;
+            a = 2;
         } else {
-            monthIsCorrect = true;
+            a = 1;
         }
-    }
+    } while (a == 1);
+    
     return month;
 }
 
